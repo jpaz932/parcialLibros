@@ -12,9 +12,14 @@ class BooksController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
+        $search = $request->input('search');
+        $books = Book::query();
+
+        if ($search) $books->where('title', 'like', '%'.$request->input('search').'%');
+        $books = $books->get();
+        
         return view('books.index', compact('books'));
     }
 
@@ -68,10 +73,5 @@ class BooksController extends Controller
     {
         $book->delete();
         return redirect()->route('books.index');
-    }
-
-    public function filterItems(Request $request) {
-        $books = Book::where('title', 'like', '%'.$request->input('search').'%')->get();
-        return view('books.index', compact('books'));
     }
 }

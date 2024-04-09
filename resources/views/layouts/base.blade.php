@@ -14,7 +14,7 @@
   <div class="container-fluid">
     <a href="{{ route('books.index') }}" class="navbar-brand">BOOKS</a>
     @if(request()->is('books'))
-    <form method="GET" action="{{ route('filter') }}" class="d-flex" role="search">
+    <form method="GET" action="{{ route('books.index') }}" class="d-flex" role="search">
       <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>

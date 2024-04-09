@@ -8,5 +8,3 @@ Route::get('/', function () {
 });
 
 Route::resource('books', BooksController::class);
-
-Route::get('filter', [BooksController::class, 'filterItems'])->name('filter');
